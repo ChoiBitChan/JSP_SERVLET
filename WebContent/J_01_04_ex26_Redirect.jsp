@@ -7,6 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+
+	<%
+		request.setAttribute("id", "abcde");
+		request.setAttribute("pw", "12345");
+		
+		response.sendRedirect("S_01_04_ex26_RequestObj");
+	%>
+
 </body>
 </html>

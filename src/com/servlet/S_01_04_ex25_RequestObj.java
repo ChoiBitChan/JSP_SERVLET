@@ -1,6 +1,8 @@
 package com.servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,17 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class J_01_03_ex24_FrontCon
+ * Servlet implementation class S_01_04_ex25_RequestObj
  */
-@WebServlet("*.do")
-public class J_01_03_ex24_FrontCon extends HttpServlet {
+@WebServlet("/S_01_04_ex25_RequestObj")
+public class S_01_04_ex25_RequestObj extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public J_01_03_ex24_FrontCon() {
+    public S_01_04_ex25_RequestObj() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -42,26 +45,11 @@ public class J_01_03_ex24_FrontCon extends HttpServlet {
 	private void actionDo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("actionDo");
 		
-		String uri = request.getRequestURI();
-		System.out.println("uri : " + uri);
-		String conPath = request.getContextPath();
-		System.out.println("conPath : " + conPath);
-		String command = uri.substring(conPath.length());
-		System.out.println("command : " + command);
+		request.setAttribute("id", "abcde");
+		request.setAttribute("pw", "12345");
 		
-		if (command.equals("/insert.do")) {
-			System.out.println("insert");
-			System.out.println("---------------");
-		} else if (command.equals("/update.do")) {
-			System.out.println("update");
-			System.out.println("---------------");
-		} else if (command.equals("/select.do")) {
-			System.out.println("select");
-			System.out.println("---------------");
-		} else if (command.equals("/delete.do")) {
-			System.out.println("delete");
-			System.out.println("---------------");
-		}
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/J_01_04_ex25_Dispacher.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }
